@@ -1,0 +1,16 @@
+# Normalise les fins de ligne dans le dépôt (LF), quel que soit l'OS.
+* text=auto
+
+# Scripts shell : toujours LF, sinon "\r: command not found" sous Git Bash / Linux / Docker
+mvnw text eol=lf
+*.sh text eol=lf
+
+# Scripts Windows : toujours CRLF
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+# Binaires
+*.jar binary
+*.ico binary
+*.png binary
+*.jpg binary
