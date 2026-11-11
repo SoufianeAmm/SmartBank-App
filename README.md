@@ -130,7 +130,9 @@ curl -s -X POST http://localhost:8180/realms/smartbank/protocol/openid-connect/t
   `infrastructure/config-server/src/main/resources/config/<service>.yml` (redémarrer le config-server).
 - **Événements Kafka** : définis **uniquement** dans `common/.../events` (+ nom du topic dans `Topics`).
   Changer un événement = prévenir l'équipe.
-- **Git** : une branche par fonctionnalité (`feature/transfer-saga`), Pull Request relue par 1 personne avant merge sur `main`.
+- **Git** : une branche par fonctionnalité (`feature/transfer-saga`), jamais de push direct sur `main`.
+  Toute Pull Request est relue et validée par **Ahmed** (code owner, cf. `.github/CODEOWNERS`) avant merge ;
+  les PR d'Ahmed sont validées par Soufiane.
 
 ## 6. Contrats prévus (à affiner ensemble)
 
