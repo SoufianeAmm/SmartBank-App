@@ -3,7 +3,7 @@
 Plateforme bancaire de **démonstration** (simulation pédagogique, aucune transaction réelle) —
 architecture microservices Spring Boot / Spring Cloud / Angular.
 
-**Équipe :** Soufiane Ammari · Ahmed Abderrahman El Baghdadi · Mohamed Amine Amrania · Youssef Boughanem · Adam Amaziane
+**Équipe :** Ahmed Abderrahman El Baghdadi (chef de projet) · Soufiane Ammari · Mohamed Amine Elamrania · Youssef Boughanem · Adam Amaziane
 
 ---
 
@@ -95,13 +95,19 @@ curl -s -X POST http://localhost:8180/realms/smartbank/protocol/openid-connect/t
 
 ## 3. Répartition
 
-| Membre | Périmètre |
-|---|---|
-| **Soufiane Ammari** | Socle : Config, Eureka, Gateway, Keycloak, Docker Compose, Kafka, CI — intégration / lead technique |
-| **Ahmed Abderrahman El Baghdadi** | `customer-service` + `account-service` |
-| **Mohamed Amine Amrania** | `transfer-service` + `transaction-service` (saga de virement, Kafka) |
-| **Youssef Boughanem** | `loan-service` + `notification-service` + relevés Spring Batch (dans `transaction-service`) |
-| **Adam Amaziane** | Frontend Angular (layout, auth, guards, tableaux de bord) — chacun aide sur les écrans de ses services |
+| Membre | Service(s) | Autres responsabilités |
+|---|---|---|
+| **Ahmed Abderrahman El Baghdadi** (chef de projet) | `account-service` (comptes, soldes, `debit`/`credit` idempotents, `@Version`, événement `account.created`) + finalisation de `customer-service` | Coordination, relecture des PR, cahier des charges, collection Postman, rapport de tests, présentation |
+| **Soufiane Ammari** | `transfer-service` (saga de virement, contrôles de cohérence, `Idempotency-Key`, Feign → account, événements `transfer.completed` / `transfer.failed`) | Socle : Config, Eureka, Gateway, Keycloak, Docker Compose, Kafka, CI — lead technique / intégration |
+| **Mohamed Amine Elamrania** | `loan-service` (simulation de crédit, demande, décision AGENT, événement `loan.decided`) | **Conception UML** : cas d'utilisation, diagramme de classes, diagrammes de séquence (virement, crédit), diagramme d'architecture, justification du découpage |
+| **Youssef Boughanem** | `transaction-service` (historique, filtres par date, consommation de `transfer.completed`) + relevés mensuels **Spring Batch** | Mise en place et suivi de l'outil de gestion de projet |
+| **Adam Amaziane** | `notification-service` (consommation Kafka, emails Mailpit, `GET /api/notifications/me`) | **Lead frontend Angular** : layout, auth, guards, routing, tableaux de bord par rôle |
+
+**Règles communes :** chacun écrit les tests (unitaires + intégration), la doc Swagger et les requêtes Postman de son service,
+et réalise les écrans Angular de son service (Adam assure la cohérence globale).
+
+**Dépendances :** les endpoints `debit` / `credit` d'`account-service` sont prioritaires (bloquants pour `transfer-service`) ;
+les diagrammes de séquence sont livrés en semaine 1 et servent de contrat entre services.
 
 ## 4. Ce qui existe déjà (exemples de référence à copier)
 
