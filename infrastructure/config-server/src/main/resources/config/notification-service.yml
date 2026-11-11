@@ -1,0 +1,13 @@
+server:
+  port: 8086
+
+smartbank:
+  db-name: notification_db
+  mail:
+    from: no-reply@smartbank.local
+
+spring:
+  mail:
+    # Mailpit (faux serveur SMTP) : interface web sur http://localhost:8025
+    host: ${MAIL_HOST:localhost}
+    port: ${MAIL_PORT:1025}

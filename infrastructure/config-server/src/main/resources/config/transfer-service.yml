@@ -1,0 +1,19 @@
+server:
+  port: 8084
+
+smartbank:
+  db-name: transfer_db
+  transfers:
+    # Règles de cohérence (à utiliser dans les contrôles de virement)
+    max-amount-per-transfer: 50000
+    daily-limit: 100000
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      account-service:
+        base-config: default
+  retry:
+    instances:
+      account-service:
+        base-config: default

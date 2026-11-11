@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: loan-service
+  config:
+    # Toute la configuration (port, base, Kafka, Keycloak...) vient du Config Server :
+    # infrastructure/config-server/src/main/resources/config/loan-service.yml
+    import: configserver:${CONFIG_SERVER_URL:http://localhost:8888}

@@ -1,0 +1,3 @@
+com.smartbank.common.security.SmartbankSecurityAutoConfiguration
+com.smartbank.common.security.FeignTokenRelayAutoConfiguration
+com.smartbank.common.web.SmartbankWebAutoConfiguration

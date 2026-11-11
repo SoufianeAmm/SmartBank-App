@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: customer-service
+  config:
+    # Toute la configuration (port, base, Kafka, Keycloak...) vient du Config Server :
+    # infrastructure/config-server/src/main/resources/config/customer-service.yml
+    import: configserver:${CONFIG_SERVER_URL:http://localhost:8888}

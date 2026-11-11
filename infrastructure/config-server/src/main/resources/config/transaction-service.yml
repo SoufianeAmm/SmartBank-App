@@ -1,0 +1,16 @@
+server:
+  port: 8083
+
+smartbank:
+  db-name: transaction_db
+  statements:
+    # Dossier où Spring Batch écrit les relevés générés
+    output-dir: ${STATEMENTS_DIR:./statements}
+
+spring:
+  batch:
+    job:
+      # Les jobs sont lancés par un @Scheduled ou un endpoint admin, pas au démarrage
+      enabled: false
+    jdbc:
+      initialize-schema: always

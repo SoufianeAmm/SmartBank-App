@@ -1,0 +1,21 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          # Les fichiers de config de chaque service sont dans src/main/resources/config.
+          # CONFIG_REPO permet de pointer vers un dossier externe (ex: file:/config-repo).
+          search-locations: ${CONFIG_REPO:classpath:/config}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

@@ -1,0 +1,7 @@
+.git
+.idea
+.vscode
+frontend
+docker
+**/src
+**/*.original

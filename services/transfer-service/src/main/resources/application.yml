@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: transfer-service
+  config:
+    # Toute la configuration (port, base, Kafka, Keycloak...) vient du Config Server :
+    # infrastructure/config-server/src/main/resources/config/transfer-service.yml
+    import: configserver:${CONFIG_SERVER_URL:http://localhost:8888}

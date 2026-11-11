@@ -1,0 +1,18 @@
+server:
+  port: 8085
+
+smartbank:
+  db-name: loan_db
+  loans:
+    # Paramètres de simulation (taux annuel en %, taux d'endettement max en %)
+    annual-rate: 4.5
+    max-debt-ratio: 33
+    max-duration-months: 300
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      customer-service:
+        base-config: default
+      account-service:
+        base-config: default

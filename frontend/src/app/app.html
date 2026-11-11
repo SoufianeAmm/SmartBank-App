@@ -1,0 +1,14 @@
+<header class="topbar">
+  <a routerLink="/" class="brand">SmartBank</a>
+  <nav>
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Accueil</a>
+    <!-- Ajouter ici : Comptes, Virements, Crédits, Clients (agent)... -->
+  </nav>
+  <span class="spacer"></span>
+  <span class="user">{{ auth.username }}</span>
+  <button type="button" (click)="auth.logout()">Déconnexion</button>
+</header>
+
+<main class="content">
+  <router-outlet />
+</main>

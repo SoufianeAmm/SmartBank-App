@@ -1,0 +1,72 @@
+server:
+  port: 8080
+
+smartbank:
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:4200}
+
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: customer-service
+              uri: lb://customer-service
+              predicates:
+                - Path=/api/customers/**
+              filters:
+                - name: CircuitBreaker
+                  args:
+                    name: customer-service
+                    fallbackUri: forward:/fallback/customer-service
+
+            - id: account-service
+              uri: lb://account-service
+              predicates:
+                - Path=/api/accounts/**
+              filters:
+                - name: CircuitBreaker
+                  args:
+                    name: account-service
+                    fallbackUri: forward:/fallback/account-service
+
+            - id: transaction-service
+              uri: lb://transaction-service
+              predicates:
+                - Path=/api/transactions/**,/api/statements/**
+              filters:
+                - name: CircuitBreaker
+                  args:
+                    name: transaction-service
+                    fallbackUri: forward:/fallback/transaction-service
+
+            - id: transfer-service
+              uri: lb://transfer-service
+              predicates:
+                - Path=/api/transfers/**
+              filters:
+                - name: CircuitBreaker
+                  args:
+                    name: transfer-service
+                    fallbackUri: forward:/fallback/transfer-service
+
+            - id: loan-service
+              uri: lb://loan-service
+              predicates:
+                - Path=/api/loans/**
+              filters:
+                - name: CircuitBreaker
+                  args:
+                    name: loan-service
+                    fallbackUri: forward:/fallback/loan-service
+
+            - id: notification-service
+              uri: lb://notification-service
+              predicates:
+                - Path=/api/notifications/**
+              filters:
+                - name: CircuitBreaker
+                  args:
+                    name: notification-service
+                    fallbackUri: forward:/fallback/notification-service

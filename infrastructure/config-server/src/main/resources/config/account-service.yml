@@ -1,0 +1,15 @@
+server:
+  port: 8082
+
+smartbank:
+  db-name: account_db
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      customer-service:
+        base-config: default
+  retry:
+    instances:
+      customer-service:
+        base-config: default

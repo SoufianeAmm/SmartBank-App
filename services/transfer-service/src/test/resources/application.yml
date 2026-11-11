@@ -1,0 +1,14 @@
+# Configuration des tests : pas de Config Server, pas d'Eureka.
+spring:
+  cloud:
+    config:
+      enabled: false
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:0/certs
+
+eureka:
+  client:
+    enabled: false

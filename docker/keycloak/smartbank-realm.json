@@ -1,0 +1,63 @@
+{
+  "realm": "smartbank",
+  "displayName": "SmartBank",
+  "enabled": true,
+  "registrationAllowed": false,
+  "loginWithEmailAllowed": true,
+  "accessTokenLifespan": 900,
+  "roles": {
+    "realm": [
+      { "name": "CLIENT", "description": "Client de la banque (consulte ses comptes, fait des virements)" },
+      { "name": "AGENT", "description": "Conseiller bancaire (crée clients et comptes, traite les crédits)" },
+      { "name": "ADMIN", "description": "Administrateur (supervision, lancement des relevés batch)" }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "smartbank-frontend",
+      "name": "SmartBank Angular",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "redirectUris": ["http://localhost:4200/*"],
+      "webOrigins": ["http://localhost:4200"],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "http://localhost:4200/*"
+      }
+    }
+  ],
+  "users": [
+    {
+      "username": "client1",
+      "enabled": true,
+      "email": "client1@smartbank.local",
+      "emailVerified": true,
+      "firstName": "Sara",
+      "lastName": "Client",
+      "credentials": [{ "type": "password", "value": "client1", "temporary": false }],
+      "realmRoles": ["CLIENT"]
+    },
+    {
+      "username": "agent1",
+      "enabled": true,
+      "email": "agent1@smartbank.local",
+      "emailVerified": true,
+      "firstName": "Karim",
+      "lastName": "Agent",
+      "credentials": [{ "type": "password", "value": "agent1", "temporary": false }],
+      "realmRoles": ["AGENT"]
+    },
+    {
+      "username": "admin1",
+      "enabled": true,
+      "email": "admin1@smartbank.local",
+      "emailVerified": true,
+      "firstName": "Nadia",
+      "lastName": "Admin",
+      "credentials": [{ "type": "password", "value": "admin1", "temporary": false }],
+      "realmRoles": ["ADMIN", "AGENT"]
+    }
+  ]
+}
